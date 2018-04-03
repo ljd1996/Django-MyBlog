@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑</title>
+
+    <link rel="stylesheet" href="/static/css/zerogrid.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/lightbox.css">
+{#    <link href="/static/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">#}
+    <link rel="stylesheet" href="/static/css/menu.css">
+
+    <script src="/static/js/jquery-3.2.1.min.js"></script>
+    <script src="/static/js/script.js"></script>
+
+    <style>
+        #submit{background-color: #333;border-radius: 4px; padding: 10px 15px;color: #fff;}
+        #submit:hover{background-color: #eee;color: #333;}
+    </style>
+</head>
+<body>
+    <div class="wrap-body">
+        <div class="header">
+            <div id='cssmenu' >
+                <ul>
+                    <li><a href="{% url 'blog:index' 1 %}"><span>首页</span></a></li>
+                    <li class="active"><a href="{% url 'blog:edit_page' 0 %}"><span>新文章</span></a></li>
+                    <li><a href="{% url 'blog:author' %}"><span>关于作者</span></a></li>
+                </ul>
+            </div>
+
+            <form action="{% url 'blog:edit_action' %}" method="post">
+                {% csrf_token %}
+
+                <input type="hidden" name="article_id" value="{{ article.id | default:'0' }}">
+                <label>文章标题
+                    <input type="text" name="title" value="{{ article.title }}">
+                </label>
+                <br/>
+                <label>文章内容
+                    <textarea rows="20" cols="20" name="content">{{ article.content }}</textarea>
+                </label>
+                <br/>
+                <input id="submit" type="submit" value="提交">
+            </form>
+        </div>
+        <div class="custom-banner">
+            <img src="/static/images/main-bottom.jpg">
+        </div>
+        <!--////////////////////////////////////Footer-->
+        <footer>
+            <div class="copyright">
+                <div class="zerogrid wrapper">
+                    Copyright @ hearing
+                    <ul class="quick-link">
+                        <li>Author：刘家东</li>
+                        <li>Email：1124031072@qq.com</li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

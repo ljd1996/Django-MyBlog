@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>用户登录</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/demo.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/style4.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/animate-custom.css" />
+
+    <style>
+        .copyright{background: #151515;color: #999;}
+        .copyright .wrapper{padding: 20px;}
+        .copyright ul.quick-link{float: right;}
+        .copyright ul.quick-link li {display: inline-block;margin-right: 10px;}
+        .copyright a{}
+    </style>
+</head>
+<body background="/static/images/main.jpg">
+    <div class="container">
+        <header>
+            <h1>湖面蒹葭荡影重</h1>
+            <h1>黄昏渐映水寒清</h1>
+        </header>
+        <section>
+            <div id="container_demo" >
+                <a class="hiddenanchor" id="toregister"></a>
+                <a class="hiddenanchor" id="tologin"></a>
+                <div id="wrapper">
+                    <div id="login" class="animate form">
+                        <form action="{% url 'blog:login' %}" autocomplete="on" method="post">
+                            <h1>Log in</h1>
+                            {% csrf_token %}
+                            <p>
+                                <label for="username" class="uname" data-icon="u" >用户名</label>
+                                <input id="username" name="username" required="required" type="text" placeholder="请输入用户名"/>
+                            </p>
+                            <p>
+                                <label for="password" class="youpasswd" data-icon="p">密码</label>
+                                <input id="password" name="password" required="required" type="password" placeholder="密码" />
+                            </p>
+                            <p class="keeplogin">
+                                <input type="checkbox" name="loginkeeping" id="loginkeeping" value="true" />
+                                <label for="loginkeeping">记住登录状态</label>
+                            </p>
+                            <p class="login button">
+                                <a href="{% url 'blog:index' 1 %}">取消登录</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="submit" value="登录" />
+                            </p>
+                            <p style="color: red">{{ error }}<p/>
+                            <input type="hidden" name="next" value="{{ next }}">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!--////////////////////////////////////Footer-->
+    <footer>
+        <div class="copyright">
+            <div class="zerogrid wrapper">
+                Copyright @ hearing
+                <ul class="quick-link">
+                    <li>Author：刘家东</li>
+                    <li>Email：1124031072@qq.com</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
